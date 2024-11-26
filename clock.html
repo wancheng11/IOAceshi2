@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>打卡 - OA平台</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,0" />
+    <link rel="stylesheet" href="./css/clock.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 主要内容 -->
+        <main class="main-content">
+            <!-- 用户信息 -->
+            <div class="user-info">
+                <div class="avatar">
+                    <img src="" alt="用户头像" id="userAvatar">
+                </div>
+                <div class="info-text">
+                    <div class="user-name" id="userName"></div>
+                    <div class="user-details">
+                        <span id="userDepartment"></span> | 
+                        <span id="userWorkId"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 时间显示 -->
+            <div class="time-display">
+                <div class="current-time" id="currentTime">00:00:00</div>
+                <div class="current-date" id="currentDate">2024年1月1日 星期一</div>
+            </div>
+
+            <!-- 打卡按钮 -->
+            <div class="clock-action">
+                <div class="clock-buttons">
+                    <button class="clock-btn clock-in" id="clockInBtn">上班打卡</button>
+                    <button class="clock-btn clock-out" id="clockOutBtn">下班打卡</button>
+                </div>
+                <button class="makeup-btn" id="makeupBtn">补卡申请</button>
+            </div>
+
+            <!-- 打卡记录 -->
+            <div class="clock-records">
+                <div class="record-title">打卡记录</div>
+                <div class="record-list" id="recordList">
+                    <div class="record-date">2024年11月27日</div>
+                    <div class="record-item">
+                        <div class="record-info">
+                            <span class="record-type">上班打卡</span>
+                            <span class="record-time">06:23</span>
+                        </div>
+                        <div class="record-info">
+                            <span class="record-type">下班打卡</span>
+                            <span class="record-time">18:30</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 打卡成功弹窗 -->
+    <div class="modal" id="clockModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>打卡成功</h3>
+                <span class="close-btn" id="closeModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="user-clock-info"></div>
+                <div class="clock-motivation"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 补卡申请弹窗 -->
+    <div class="modal" id="makeupModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>补卡申请</h3>
+                <span class="close-btn" id="closeMakeupModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="makeupForm">
+                    <div class="form-group">
+                        <label>申请编号</label>
+                        <input type="text" id="applicationId" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>申请人</label>
+                        <input type="text" id="applicantName" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>工号</label>
+                        <input type="text" id="applicantWorkId" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>部门</label>
+                        <input type="text" id="applicantDepartment" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>补卡类型</label>
+                        <div class="makeup-type-selector">
+                            <label class="type-option">
+                                <input type="radio" name="makeupType" value="上班补卡" required checked>
+                                <span class="type-text">上班补卡</span>
+                            </label>
+                            <label class="type-option">
+                                <input type="radio" name="makeupType" value="下班补卡" required>
+                                <span class="type-text">下班补卡</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>补卡日期</label>
+                        <input type="date" id="makeupDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label>补卡时间</label>
+                        <input type="time" id="makeupTime" required>
+                    </div>
+                    <div class="form-group">
+                        <label>补卡原因</label>
+                        <textarea id="makeupReason" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">提交申请</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 在body结束标签前添加补卡成功弹窗 -->
+    <div class="modal" id="makeupSuccessModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>补卡申请已提交</h3>
+                <span class="close-btn" id="closeMakeupSuccessModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="makeup-success-info"></div>
+                <button class="confirm-btn" id="confirmMakeupBtn">确定</button>
+            </div>
+        </div>
+    </div>
+    <script src="./js/clock.js"></script>
+</body>
+</html> 
